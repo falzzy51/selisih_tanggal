@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selisih Tanggal</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body oncontextmenu="return false;">
+    <div class="container">
+        <h1>Hitung Selisih Tanggal</h1>
+        <label for="date1">Tanggal Awal:</label>
+        <input type="date" id="date1">
+        <label for="date2">Tanggal Akhir:</label>
+        <input type="date" id="date2">
+        <button onclick="calculateDifference()">Hitung</button>
+        <p id="result"></p>
+        <button id="dark-mode-toggle">Dark Mode</button>
+    </div>
+    <script>
+        function calculateDifference(){
+            const date1 = new Date(document.getElementById('date1').value)
+            const date2 = new Date(document.getElementById('date2').value)
+
+            if(date1 && date2){
+                const timeDifference = Math.abs(date2 - date1);
+                const dayDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
+                document.getElementById('result').innerHTML = `Selisih hari: ${dayDifference} hari`;
+            }
+            else{
+                document.getElementById('result').innerHTML = 'Silahkan pilih kedua tanggal';
+            }
+        }
+
+        document.getElementById('dark-mode-toggle').addEventListener('click', function() { const body = document.body; body.classList.toggle('dark-mode'); this.innerText = body.classList.contains('dark-mode') ? 'White Mode' : 'Dark Mode'; });
+    </script>
+</body>
+</html>
